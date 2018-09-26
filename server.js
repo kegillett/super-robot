@@ -117,6 +117,8 @@ router.route('/country/:country_id')
 
 
   })
+  router.route('/country/:country_id/:region_id')
+
   .put(function(req, res){
     Region.findById(req.params.region_id, function(err, region){
       if(err)
@@ -133,13 +135,13 @@ router.route('/country/:country_id')
   })
 
   .delete(function(req, res){
-    Country.remove({
-      _id: req.params.country_id
-    }, function(err, country) {
+    Region.remove({
+      _id: req.params.region_id
+    }, function(err, region) {
       if (err)
         res.send(err);
 
-      res.json({ message: 'Successfully deleted' });
+      res.json({ message: 'Successfully deleted region' });
 
     });
   });
