@@ -8,7 +8,6 @@ var CountrySchema = new Schema({
 
 var RegionSchema = new Schema({
   name: String,
-  region: String,
   country: {type: Schema.Types.ObjectId, ref:'Country'}
 });
 
@@ -20,6 +19,6 @@ var RegionSchema = new Schema({
 
  module.exports = {
    country: mongoose.model('Country', CountrySchema),
-   region: mongoose.model('Region', RegionSchema),
+   region: mongoose.model('Region', RegionSchema)
  }
 // var Lot = module.exports = mongoose.model('Lot', LotSchema)

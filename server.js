@@ -83,19 +83,40 @@ router.route('/country/:country_id')
     });
   });
 
-  router.route('/country/:country_id/region')
+  router.route('/country/:country_id/regions')
 
   .post(function(req, res){
-    var region = new Region();
+    Country.findById(req.params.country_id, function(err, country){
+      if(err)
+        res.send(err);
+        let region = new Region();
     region.name = req.body.name;
+     country.regions.push(region)
     region.save(function(err){
       if (err)
         res.send(err);
 
-        res.json({ message: 'Region Created!' });
     })
-  })
+    country.save(function(err){
+      if (err)
+        res.send(err);
+        res.json({messsage: "Country Updated/Region Added"})
+    })
+        })
+    })
 
+  .get(function(req, res){
+    Country.findById(req.params.country_id, function(err, country){
+      if(err)
+        res.send(err);
+    }).populate('regions', 'name').exec(function(err, country){
+      if(err)
+        res.send(err)
+      res.json(country.regions)
+    })
+
+
+  })
   .put(function(req, res){
     Region.findById(req.params.region_id, function(err, region){
       if(err)
@@ -108,6 +129,18 @@ router.route('/country/:country_id')
           res.send(err);
         res.json({ message: 'Region Updated!'});
       })
+    })
+  })
+
+  .delete(function(req, res){
+    Country.remove({
+      _id: req.params.country_id
+    }, function(err, country) {
+      if (err)
+        res.send(err);
+
+      res.json({ message: 'Successfully deleted' });
+
     });
   });
 
