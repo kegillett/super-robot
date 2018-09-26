@@ -23,27 +23,3 @@ var RegionSchema = new Schema({
    region: mongoose.model('Region', RegionSchema),
  }
 // var Lot = module.exports = mongoose.model('Lot', LotSchema)
-
-
-
-
-
-// var mongoose = require('mongoose');
-// var Schema = mongoose.Schema;
-//
-// var CoffeeSchema = new Schema({
-//   _id: Schema.Types.ObjectId,
-//   name: String,
-//   required: true,
-//   region: Region
-//
-// });
-//
-// var RegionSchema =  new Schema({
-//   name:String,
-//   required: true
-//   coffee: [{type, Schema.Types.ObjectId, ref: 'Coffee'}]
-//
-// })
-//
-// module.exports = mongoose.model('Coffee', CoffeeSchema)

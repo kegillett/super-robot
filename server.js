@@ -22,6 +22,7 @@ router.use(function(req, res, next) {
 router.get('/', function(req, res) {
   res.json({ message: 'hooray! welcome to our api!' });
 });
+
 router.route('/country')
 
   .post(function(req, res){
@@ -43,18 +44,6 @@ router.route('/country')
         res.json(country);
     });
   });
-
-
-router.route('/country/region')//??????????
-
-  .put(function(req, res){
-    Region.findById(req.params.country_id, function(err, region){
-      if (err)
-        res.send(err);
-      res.json(region);
-    })
-  })
-
 
 
 router.route('/country/:country_id')
@@ -91,8 +80,36 @@ router.route('/country/:country_id')
 
       res.json({ message: 'Successfully deleted' });
 
+    });
+  });
+
+  router.route('/country/:country_id/region')
+
+  .post(function(req, res){
+    var region = new Region();
+    region.name = req.body.name;
+    region.save(function(err){
+      if (err)
+        res.send(err);
+
+        res.json({ message: 'Region Created!' });
     })
   })
+
+  .put(function(req, res){
+    Region.findById(req.params.region_id, function(err, region){
+      if(err)
+        res.send(err);
+      region.name = req.body.name;
+      // country.regions.push(region)
+      //save the region
+      region.save(function(err){
+        if(err)
+          res.send(err);
+        res.json({ message: 'Region Updated!'});
+      })
+    });
+  });
 
 
 // Register our routes
