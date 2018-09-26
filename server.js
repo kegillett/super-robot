@@ -141,10 +141,41 @@ router.route('/country/:country_id')
       if (err)
         res.send(err);
 
-      res.json({ message: 'Successfully deleted region' });
+
+
 
     });
-  });
+    // Country.findById(req.params.country_id, function(err, country) {
+    //   if (err)
+    //     res.send(err)
+    //   for (var i = 0; i < country.regions.length; i++) {
+    //     if (country.regions[i] == req.params.region_id) {
+    //       country.regions.splice(i, 1)
+    //       console.log(i)
+      //   }
+      // }
+    // _id: req.params.region_id
+      // });
+Country.findById(req.params.country_id, function(err, country) {
+  if (err)
+    res.send(err)
+    country.regions.deleteOne({_id: req.params.region_id},
+    function(err, region) {
+      if (err)
+        res.send(err)
+    })
+})
+
+
+
+      Country.findById(req.params.country_id, function(err, country) {
+       country.save(function(err){
+          if (err)
+            res.send(err);
+            res.json({messsage: "Country Updated/Region Added"})
+        })
+      })
+    });
 
 
 // Register our routes
