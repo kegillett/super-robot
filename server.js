@@ -1,17 +1,24 @@
 // importing dependencies
 const express = require( 'express' );
+const path = require('path')
 const app = express();
 const bodyParser = require( 'body-parser' );
 const mongoose = require( 'mongoose' );
 
+
 mongoose.connect( 'mongodb://localhost:27017/coffeeAPI', {
 	useNewUrlParser: true
 } );
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 //create a models of imported objects from cofee.js
 var Country = require( './app/models/coffee' )
 	.country;
 var Region = require( './app/models/coffee' )
 	.region;
+
+
 
 app.use( bodyParser.urlencoded( {
 	extended: true
@@ -241,6 +248,7 @@ router.route( '/country/:country_id/:region_id' )
 //=========================================
 // Register our routes
 app.use( '/api', router );
+
 
 //start the server
 app.listen( port );
