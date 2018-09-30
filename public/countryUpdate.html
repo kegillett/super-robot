@@ -7,28 +7,21 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./styles/countryUpdate.css">
   </head>
   <body>
     <h1>Country Update Form</h1>
     <form id='inputs'>
       <select id="dropDown" name="">
         <!-- populates from 'GET' function in index.js -->
+        <option>--Select Country--</option>
         <option>Add New Country</option>
       </select>
-      <button type="button" id="update">Update</button>
     </form>
     <form id='newCountry'>
 
     </form>
     <div id='subButton'></div>
-    <div>
-      <h2>
-        All Countries:
-      </h2>
-      <ul id='listCountries'>
-
-      </ul>
-    </div>
     <div class="container">
   <h2>Around the World</h2>
   <p>Countries currently growing coffee</p>
