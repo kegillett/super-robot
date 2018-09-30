@@ -1,0 +1,13 @@
+header{
+  background-image: url("../imgs/cherries.jpg");
+  background-size: cover;
+  background-position: center;
+  padding-top: 10%;
+}
+body {
+  background-image: url("../imgs/african-map.jpg");
+  background-size: 500px 500px;
+  margin-top: 75%;
+  background-position: center;
+  background-repeat: no-repeat;
+}

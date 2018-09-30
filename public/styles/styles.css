@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:200');
+@import url('https://fonts.googleapis.com/css?family=Aladin');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+
+
+#welcome {
+  font-family: 'Aladin', cursive;
+  color: #faf4dc;
+  text-align: center;
+  font-size: 70px;
+  text-shadow: 4px 4px #000000;
+}
+.earth{
+  position:absolute;
+  top: 25%;
+  bottom: 0;
+  left: 0;
+  right: 1%;
+  margin: auto;
+  width: 415px;
+  height: 415px;
+  background-image: url("../imgs/1557e23b11100d2.jpg");
+  border-radius: 50%;
+  background-size: cover;
+  box-shadow: 1px 1px 1px 1px #faf4dc Inset, 1px 1px 1px 1px #faf4dc;
+  animation: spin 20s linear alternate infinite;
+
+  }
+
+  @keyframes spin {
+    100%{background-position: 100%}
+  }
+
+  #click {
+    font-family: 'Aladin', cursive;
+    color: #BC8F8F;
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 4px 4px 4px #000000;
+    margin-top: 100%;
+    position: relative;
+    text-decoration: none;
+    /* margin-right: 2%; */
+  }
+
+body{
+  background-image: url("../imgs/hands-holding-coffee-beans_23-2147671424.jpg");
+  background-size: 2000px 1000px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* #homepage{
+  max-width: 350px;
+  margin: 60px auto;
+  padding: 10px 20px;
+  background: #fdfdfd;
+  border-radius: 4px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,2);
+} */
+
+input[type="text"]{
+  display: block;
+  width: 300px;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 4px;
+
+}
+
+
+label{
+  font-weight: bold;
+}
+
+.title{
+  font-family: 'Dosis', sans-serif;
+  color: #fff;
+  text-align: center;
+  font-size: 130px;
+}
+
+#homepage h1{
+  text-align: center;
+}
+
+form{
+  max-width: 350px;
+  margin: 30px auto;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  padding: 15px 0;
+  background: #eee;
+  list-style-type: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+span {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+
+span.dist{
+  color: green;
+  margin: 0 20px;
+}
+
+span.true {
+  border-radius: 10px;
+  width: 10px;
+  height: 10px;
+  background: green;
+}
+
+span.false{
+  border-radius: 10px;
+  width: 10px;
+  height: 10px;
+  background: #ff5252;
+}
+button{
+  float:right;
+  background: green;
+  border: 0;
+  padding: 5px, 10px;
+  color: #fff;
+  display: inline-block;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.false{display: none;}
