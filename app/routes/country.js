@@ -1,6 +1,6 @@
 const Country = require('../models/coffee').country;
 const Region = require('../models/coffee').region;
-const Response = reqire('../utilities/response')
+const Response = require('../utilities/response')
 
 module.exports = function(router) {
   //link for list of countries

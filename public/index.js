@@ -44,36 +44,35 @@ $(document).ready(() => {
           }
         })
       })
+      $.getJSON('/api/country', function(data){
+        console.log(data)
+        let names = [];
+        let tr;
+        for(var i = 0; i < data.length; i++) {
+          // $('#try').append(data[i]);
+          names.push(data[i].name);
+          console.log(names);
+        }
+        for(var i = 0; i < names.length; i++) {
+          tr = $('<tr/>');
+          tr.append("<td>" + names[i] + "</td>")
+          $('table').append(tr)
+        }
+      })
     })
 
-  // upon click, posts country object to back end
-    // page reload will show newly added country to the <ul>
-  // $("#submit").click(function() {
-  //   let country = {
-  //     name: $country.val()
-  //   }
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: '/api/country',
-  //     data: country,
-  //     success: function(newCountry) {
-  //       console.log(newCountry)
-  //     }
-  //   })
-  // })
-
-//
-//   $.getJSON(url , function(data) {
-//     var tbl_body = document.createElement("tbody");
-//     var odd_even = false;
-//     $.each(data, function() {
-//         var tbl_row = tbl_body.insertRow();
-//         tbl_row.className = odd_even ? "odd" : "even";
-//         $.each(this, function(k , v) {
-//             var cell = tbl_row.insertCell();
-//             cell.appendChild(document.createTextNode(v.toString()));
-//         })
-//         odd_even = !odd_even;
-//     })
-//     $("#target_table_id").appendChild(tbl_body);
-// });
+    // $.getJSON('/country/:country_id/regions', function(data){
+    //   console.log(data)
+    //   let names = [];
+    //   let tr;
+    //   for(var i = 0; i < data.length; i++) {
+    //     // $('#try').append(data[i]);
+    //     names.push(data[i].name);
+    //     console.log(names);
+    //   }
+    //   for(var i = 0; i < names.length; i++) {
+    //     tr = $('<tr/>');
+    //     tr.append("<td>" + names[i] + "</td>")
+    //     $('table').append(tr)
+    //   }
+    // })
