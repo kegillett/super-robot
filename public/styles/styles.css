@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 
 
-h1 {
+#welcome {
   font-family: 'Aladin', cursive;
   color: #faf4dc;
   text-align: center;
@@ -24,14 +24,14 @@ h1 {
   background-size: cover;
   box-shadow: 1px 1px 1px 1px #faf4dc Inset, 1px 1px 1px 1px #faf4dc;
   animation: spin 20s linear alternate infinite;
-  text-decoration: none;
+
   }
 
   @keyframes spin {
     100%{background-position: 100%}
   }
 
-  h3 {
+  #click {
     font-family: 'Aladin', cursive;
     color: #BC8F8F;
     text-align: center;
