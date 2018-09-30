@@ -60,19 +60,3 @@ $(document).ready(() => {
         }
       })
     })
-
-    // $.getJSON('/country/:country_id/regions', function(data){
-    //   console.log(data)
-    //   let names = [];
-    //   let tr;
-    //   for(var i = 0; i < data.length; i++) {
-    //     // $('#try').append(data[i]);
-    //     names.push(data[i].name);
-    //     console.log(names);
-    //   }
-    //   for(var i = 0; i < names.length; i++) {
-    //     tr = $('<tr/>');
-    //     tr.append("<td>" + names[i] + "</td>")
-    //     $('table').append(tr)
-    //   }
-    // })
