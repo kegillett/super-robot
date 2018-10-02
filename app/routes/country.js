@@ -15,9 +15,7 @@ module.exports = function(router) {
     //method to get the list of all countries
     .get(function(req, res) {
       Country.find(function(err, country) {
-        if (err)
-          res.send(err);
-        res.json(country);
+        Response(err, res, country)
       });
     });
 
@@ -26,10 +24,7 @@ module.exports = function(router) {
     //method that allows you information about specific country by id
     .get(function(req, res) {
       Country.findById(req.params.country_id, function(err, country) {
-        if (err)
-          res.send(err);
-
-        res.json(country);
+        Response(err, res, country)
       })
     })
     //method that let you edit country object
