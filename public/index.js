@@ -4,44 +4,43 @@ $(document).ready(() => {
   let countryID;
   let $countries = $('#dropDown')
   let $newCountry = $('#newCountry')
+  let $button = $('#subButton')
 
   // populates <ul> of countries that exist in the back end
     $.ajax({
       type: 'GET',
       url: 'api/country',
       success: function(countries) {
-
+        json = countries
         $.each(countries, function(i, name)  {
           $countries.append('<option>' + this.name + '</option>')
         })
-        // adds or removes input fields based on dropDown selection
-        $('#dropDown').change(function () {
-          json = countries
-          for (var i = 0; i < json.length; i++) {
-            if (json[i]['name'] === $countries.val()) {
-              countryID = json[i]['_id']
-            }
-          }
-          console.log(countryID)
-          if ($countries.val() === "Add New Country") {
-            $newCountry.empty()
-            $('#subButton').empty()
-            $newCountry.append('<input type="" id="AddNewCountry" placeholder="add country">')
-            $newCountry.append('<input type="" id="AddNewRegion" placeholder="add region">')
-            $('#subButton').append('<button type="button" id="submit">Submit</button>')
-          } else if ($countries.val() === "--Select Country--") {
-            $newCountry.empty()
-            $('#subButton').empty()
-          } else {
-            $newCountry.empty()
-            $('#subButton').empty()
-            $newCountry.append('<input type="" id="AddNewRegion" placeholder="add region">')
-            $('#subButton').append('<button type="button" id="submit">Submit</button>')
-          }
-          // console.log(countries[0]['_id'])
-        })
       }
     })
+    $('#dropDown').change(function () {
+      for (var i = 0; i < json.length; i++) {
+        if (json[i]['name'] === $countries.val()) {
+          countryID = json[i]['_id']
+        }
+      }
+      if ($countries.val() === "Add New Country") {
+        $newCountry.empty().append('<input type="" id="AddNewCountry" placeholder="add country">')
+        .append('<input type="" id="AddNewRegion" placeholder="add region">')
+        $button.empty().append('<button type="button" id="submit">Submit</button>')
+      } else if ($countries.val() === "--Select Country--") {
+        $newCountry.empty()
+        $button.empty()
+      } else {
+        $newCountry.empty()
+        $button.empty()
+        $newCountry.append('<input type="" id="AddNewRegion" placeholder="add region">')
+        $button.append('<button type="button" id="submit">Submit</button>')
+      }
+    })
+
+    // add error for trying to duplicate countries
+
+
     // Posts data upon clicking submit button
     $('#subButton').on('click', $('#submit'), function() {
       let nameField = $('#AddNewCountry').val()
@@ -87,18 +86,22 @@ $(document).ready(() => {
       })
       // creates table
       $.getJSON('/api/country', function(data){
-        // console.log(data)
-        let names = [];
         let tr;
         for(var i = 0; i < data.length; i++) {
-          // $('#try').append(data[i]);
-          names.push(data[i].name);
-          // console.log(names);
-        }
-        for(var i = 0; i < names.length; i++) {
           tr = $('<tr/>');
-          tr.append("<td>" + names[i] + "</td>")
+          tr.append("<td>" + data[i].name + "</td>")
           $('table').append(tr)
         }
       })
+
+    $.getJSON('/api/regions', function(data){
+      let tr;
+      for(var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + data[i].name + "</td>")
+        $('table').append(tr)
+      }
     })
+    });
+
+// data[i]['regions']['name']

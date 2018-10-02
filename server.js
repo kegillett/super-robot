@@ -31,8 +31,8 @@ router.get( '/', function ( req, res ) {
 const countryRoutes = require('./app/routes/country.js')
 countryRoutes(router)
 // region routes
-// const regionRoutes = require('./app/routes/region.js')
-// regionRoutes(router)
+const regionRoutes = require('./app/routes/region.js')
+regionRoutes(router)
 // Register our routes
 app.use( '/api', router );
 //start the server
