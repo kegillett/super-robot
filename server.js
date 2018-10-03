@@ -17,12 +17,12 @@ const port = process.env.PORT || 8080;
 const router = express.Router();
 // middleware starts here
 // function fired with every API call
-router.use( function ( req, res, next ) {
+router.use( ( req, res, next ) => {
 	console.log( 'Something is happening.' );
 	next();
 } );
 //catch all routes
-router.get( '/', function ( req, res ) {
+router.get( '/', ( req, res ) => {
 	res.json( {
 		message: 'hooray! welcome to our api!'
 	});

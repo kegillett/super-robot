@@ -3,6 +3,7 @@ const Region = require('../models/coffee').region;
 const Response = require('../utilities/response')
 
 module.exports = function(router) {
+
   //link for list of countries
   router.route('/country')
     .post(function(req, res) {
@@ -17,9 +18,10 @@ module.exports = function(router) {
       Country.find(function(err, country) {
         if (err)
           res.send(err);
-        res.json(country);
+        res.json(country)
+        })
       });
-    });
+
 
   //route to the specific country by id
   router.route('/country/:country_id')

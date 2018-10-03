@@ -6,18 +6,19 @@ $(document).ready(() => {
   let $newCountry = $('#newCountry')
   let $button = $('#subButton')
 
-  // populates <ul> of countries that exist in the back end
+// populates <ul> of countries that exist in the back end
     $.ajax({
       type: 'GET',
       url: 'api/country',
-      success: function(countries) {
+      success: (countries) => {
         json = countries
-        $.each(countries, function(i, name)  {
+        $.each(countries, function(i, name) {
           $countries.append('<option>' + this.name + '</option>')
         })
       }
     })
-    $('#dropDown').change(function () {
+// populates input boxes based on dropdown selection
+    $('#dropDown').change( () => {
       for (var i = 0; i < json.length; i++) {
         if (json[i]['name'] === $countries.val()) {
           countryID = json[i]['_id']
@@ -41,8 +42,8 @@ $(document).ready(() => {
     // add error for trying to duplicate countries
 
 
-    // Posts data upon clicking submit button
-    $('#subButton').on('click', $('#submit'), function() {
+// Posts data upon clicking submit button
+    $('#subButton').on('click', $('#submit'), () => {
       let nameField = $('#AddNewCountry').val()
       let regField = $('#AddNewRegion').val()
       if (nameField !== undefined && nameField !== '') {
@@ -54,7 +55,7 @@ $(document).ready(() => {
           type: 'POST',
           url: 'api/country',
           data: country,
-          success: function(res) {
+          success: (res) => {
             console.log(res)
             }
           })
@@ -62,18 +63,16 @@ $(document).ready(() => {
         else if (nameField === "") {
           $('#errors').empty().append('<h4>please enter a country, first.</h4>')
         }
-
-// problem child: does not push name and country to
         else if (nameField == undefined && regField.length > 0) {
           let region = {
             name: regField
           }
-
+// post region name to country
           $.ajax({
             type: 'POST',
             url: `api/country/${countryID}/regions`,
             data: region,
-            success: function(res) {
+            success: (res) => {
               console.log(res)
               for (var i = 0; i < json.length; i++) {
                 if (json[i]['_id'] === countryID) {
@@ -84,24 +83,18 @@ $(document).ready(() => {
           })
         }
       })
-      // creates table
-      $.getJSON('/api/country', function(data){
+// creates table
+    $.getJSON('/api/country', (data) => {
         let tr;
+        console.log(data)
         for(var i = 0; i < data.length; i++) {
-          tr = $('<tr/>');
+          tr = $('<tr>');
           tr.append("<td>" + data[i].name + "</td>")
           $('table').append(tr)
+          for (var j = 0; j < data[i]['regions'].length; j++) {
+            tr.append("<td>" + data[i]['regions'][j] + "</td>")
+
+          }
         }
       })
-
-    $.getJSON('/api/regions', function(data){
-      let tr;
-      for(var i = 0; i < data.length; i++) {
-        tr = $('<tr/>');
-        tr.append("<td>" + data[i].name + "</td>")
-        $('table').append(tr)
-      }
-    })
     });
-
-// data[i]['regions']['name']
